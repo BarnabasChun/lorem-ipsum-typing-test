@@ -1,14 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import axios from 'axios';
+import ready from './modules/ready';
+import init from './modules/init';
 
-class App extends React.Component {
-    render() {
-      return (
-        <div>
-          Hello
-        </div>
-      )
-    }
-}
+const app = {};
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ready(init);

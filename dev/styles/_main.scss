@@ -1,0 +1,22 @@
+.words-container {
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.word {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.current-word {
+  background: lightblue;
+}
+
+.correct {
+  background: lime;
+}
+
+.incorrect {
+  background: orangered;
+}
