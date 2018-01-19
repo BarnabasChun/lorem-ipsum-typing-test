@@ -17,9 +17,13 @@ export default function getWords(num, length) {
       xmlToJSON: false,
     },
   }).then(res => {
+    // split the data into an array of words and set the state
     const words = res.data.split(' ');
     state.words = words;
+    // the following methods are interdependent
+    // the state of words is not immediately available to be used to output and compare against the user input
     outputWords(words);
+    // only after the words have been inserted into the DOM can they be selected and have a class added to them
     highlight();
     track();
   });
