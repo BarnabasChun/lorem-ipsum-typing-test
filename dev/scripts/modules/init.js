@@ -1,8 +1,7 @@
 import getWords from './getWords';
-import highlight from './highlight';
-import track from './track';
+import restart from './restart';
 
 export default function init() {
   getWords(2, 'short');
-  // track();
+  restart();
 }
