@@ -17,7 +17,9 @@ export default function timer(seconds) {
     // the remaining time is the diff between the time now and the end time 
     // divide by 1000 to convert from ms to s
     const secondsLeft = Math.round((later - Date.now()) / 1000);
-    // after the interval has elapsed clear it
+    // after the interval has elapsed or the user has restarted then clear the interval and the input
+    // timer running will be set to true when the user starts typing in the input
+    // otherwise it is initialized as false and upon restart is set back to false
     if (secondsLeft < 0 || !state.timerRunning) {
       clearInterval(countdown);
       input.value = '';
