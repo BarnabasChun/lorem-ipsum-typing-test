@@ -1,9 +1,15 @@
 import state from './state';
 import highlight from './highlight'
+import timer from './timer';
 
 export default function track() {
-  const input = document.querySelector('[type="text"]');
+  const input = document.querySelector('.typing-input');
   input.addEventListener('keyup', function(e) {
+    // if the timer has not started yet then start it
+    if (!state.timerRunning) {
+      state.timerRunning = true;
+      timer(60);
+    }
     // the current word aligns with the current index
     let currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
     // the part of the word equivalent in length to the value being typed in the input
