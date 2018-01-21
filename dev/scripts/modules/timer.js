@@ -21,6 +21,7 @@ export default function timer(seconds) {
     // if the time has ran out then disable the input
     if (secondsLeft < 0) {
       input.setAttribute('disabled', '');
+      document.querySelector('.overlay').classList.add('show');
     }
     // after the interval has elapsed or the user has restarted then clear the interval and the input
     // timer running will be set to true when the user starts typing in the input
