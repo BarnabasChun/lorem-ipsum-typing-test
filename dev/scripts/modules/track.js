@@ -8,7 +8,7 @@ export default function track() {
     // if the timer has not started yet then start it
     if (!state.timerRunning) {
       state.timerRunning = true;
-      timer(60);
+      timer(state.seconds);
     }
     // the current word aligns with the current index
     let currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
@@ -33,6 +33,7 @@ export default function track() {
       if (e.target.value.trim() === state.words[state.currentIndex]) {
         currentWord.classList.add('correct');
         currentWord.classList.remove('incorrect');
+        state.correct++;
       } else {
         currentWord.classList.add('incorrect');
         currentWord.classList.remove('correct');

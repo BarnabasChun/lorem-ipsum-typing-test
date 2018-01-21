@@ -1,3 +1,4 @@
+import state from './state';
 import resetState from './resetState';
 import getWords from './getWords';
 import timer from './timer';
@@ -7,6 +8,7 @@ export default function restart() {
   restartBtn.addEventListener('click', function() {
     resetState();
     getWords();
-    timer(60);
+    timer(state.seconds);
+    document.querySelector('.typing-input').removeAttribute('disabled');
   });
 }

@@ -4,7 +4,7 @@ import outputWords from './outputWords';
 import highlight from './highlight';
 import track from './track';
 
-export default function getWords(num, length) {
+export default function getWords(num = 2, length = 'long') {
   axios({
     method: 'GET',
     url: 'http://proxy.hackeryou.com',
@@ -17,8 +17,15 @@ export default function getWords(num, length) {
       xmlToJSON: false,
     },
   }).then(res => {
-    // split the data into an array of words and set the state
-    const words = res.data.split(' ');
+    const words = res.data
+    // split the data into an array of words
+    .split(' ')
+    // change the words to lowercase
+    .map(word => word.toLowerCase())
+    // remove all punctuation
+    .map(word => word.replace(/\W/g,''))
+    // standardize and only get the first 150 words
+    .slice(0,150);
     state.words = words;
     // the following methods are interdependent
     // the state of words is not immediately available to be used to output and compare against the user input

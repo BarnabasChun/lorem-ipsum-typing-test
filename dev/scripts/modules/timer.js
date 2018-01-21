@@ -1,5 +1,6 @@
 import displayTimeLeft from './displayTimeLeft';
 import state from './state';
+import displayMetrics from './displayMetrics';
 
 export default function timer(seconds) {
   const input = document.querySelector('.typing-input');
@@ -17,12 +18,17 @@ export default function timer(seconds) {
     // the remaining time is the diff between the time now and the end time 
     // divide by 1000 to convert from ms to s
     const secondsLeft = Math.round((later - Date.now()) / 1000);
+    // if the time has ran out then disable the input
+    if (secondsLeft < 0) {
+      input.setAttribute('disabled', '');
+    }
     // after the interval has elapsed or the user has restarted then clear the interval and the input
     // timer running will be set to true when the user starts typing in the input
     // otherwise it is initialized as false and upon restart is set back to false
     if (secondsLeft < 0 || !state.timerRunning) {
       clearInterval(countdown);
       input.value = '';
+      displayMetrics();
       return;
     }
     displayTimeLeft(secondsLeft);
