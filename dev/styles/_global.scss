@@ -1,5 +1,24 @@
+$color-white: #fffff0;
+$color-red: salmon;
+
+body {
+  min-height: 100vh;
+  max-height: 100%;
+  background: cornflowerblue;
+  color: $color-white;
+}
+
 .wrapper {
-  max-width: 980px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 50px;
+  padding: 1px 2%;
+}
+
+h1 {
+  color: #fffff0;
+  text-align: center;
+}
+
+header {
+  margin: 20px 0;
 }

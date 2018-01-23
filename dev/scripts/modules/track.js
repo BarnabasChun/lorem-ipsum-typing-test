@@ -18,6 +18,7 @@ export default function track() {
     // the current word aligns with the current index
     let currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
     let currentWordValue = state.words[state.currentIndex];
+    
     // the part of the word equivalent in length to the value being typed in the input
     let slicedWord = currentWordValue.slice(0, e.target.value.length);
     // the rest of the current word will be the index from how much was typed to the word's entire length
@@ -46,20 +47,9 @@ export default function track() {
       wordsContainer.style.bottom = `${currentPosition}px`;
     }
 
-    // if the value being typed matches the current portion of the word and is not blank
-    if (e.target.value === slicedWord && e.target.value !== '') {
-      changeClass(currentWord, 'incorrect', 'correct');
-    // if the input is blank
-    } else if (e.target.value === slicedWord && e.target.value == '') {
-      currentWord.classList.remove('correct');
-      currentWord.classList.remove('incorrect');
-    // if the value being typed does not match the current portion of the word
-    } else if (e.target.value !== slicedWord ) {
-      changeClass(currentWord, 'correct', 'incorrect');
-    }
-
     // if the user has pressed the spacebar
     if (e.target.value.includes(' ')) {
+      currentWord.innerHTML = currentWordValue;
       // compare if the entered word matches the current word
       if (e.target.value.trim() === state.words[state.currentIndex]) {
         changeClass(currentWord, 'incorrect', 'correct');
