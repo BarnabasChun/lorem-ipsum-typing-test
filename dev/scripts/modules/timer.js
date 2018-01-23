@@ -4,6 +4,7 @@ import displayMetrics from './displayMetrics';
 
 export default function timer(seconds) {
   const input = document.querySelector('.typing-input');
+  const timerDisplay = document.querySelector('.time-left');
   // clear existing countdown
   clearInterval(countdown);
   // when the timer started - in ms
@@ -31,6 +32,13 @@ export default function timer(seconds) {
       input.value = '';
       displayMetrics();
       return;
+    }
+    if (secondsLeft <=10) {
+      if (secondsLeft%2 == 0) {
+        timerDisplay.classList.add('flashing')
+      } else {
+        timerDisplay.classList.remove('flashing');
+      }
     }
     displayTimeLeft(secondsLeft);
   }, 1000);
