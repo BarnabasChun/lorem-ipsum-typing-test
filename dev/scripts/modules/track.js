@@ -17,9 +17,23 @@ export default function track() {
     
     // the current word aligns with the current index
     let currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
+    let currentWordValue = state.words[state.currentIndex];
     // the part of the word equivalent in length to the value being typed in the input
-    let slicedWord = state.words[state.currentIndex].slice(0, e.target.value.length);
-    
+    let slicedWord = currentWordValue.slice(0, e.target.value.length);
+    // the rest of the current word will be the index from how much was typed to the word's entire length
+    let remainderWord = currentWordValue.slice(e.target.value.length, currentWordValue.length);
+
+    let slicedInputValue = e.target.value.slice(0, e.target.value.length);
+    /*each type the user inputs a letter wrap a span around the corresponding letter in the words container*/
+    /*if the letter typed matches the actual word at the same position then add a class of correct letter otherwise incorrect letter*/
+    //the inner text of the span will remain the value of the actual word
+    let slicedWordDisplay = slicedInputValue
+      .split('')
+      .map((letter, i) => `<span class=${letter === currentWordValue.slice(i, i + 1) ? 'correct-letter' : 'incorrect-letter'}>${currentWordValue.slice(i, i + 1)}</span>`)
+      .join('');
+    /* the first portion will be each letter typed wrapped in a span and a class
+    the remainder will just be tacked on*/
+    currentWord.innerHTML = `${slicedWordDisplay}${remainderWord}`;
     
     // how far the current word is from the top of the words container
     /* will be updated each time on keydown and compared against the last position 

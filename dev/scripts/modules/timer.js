@@ -34,11 +34,9 @@ export default function timer(seconds) {
       return;
     }
     if (secondsLeft <=10) {
-      if (secondsLeft%2 == 0) {
-        timerDisplay.classList.add('flashing')
-      } else {
-        timerDisplay.classList.remove('flashing');
-      }
+      secondsLeft % 2 == 0 
+      ? timerDisplay.classList.add('flashing')
+      : timerDisplay.classList.remove('flashing');
     }
     displayTimeLeft(secondsLeft);
   }, 1000);
