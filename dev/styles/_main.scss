@@ -1,11 +1,23 @@
-.game-area {
-  position: relative;
+.game {
+  &__controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__area {
+    border: 1px solid black;
+    position: relative;
+    overflow: hidden;
+  }
 }
 
 .words-container {
-  border: 1px solid black;
   display: flex;
   flex-wrap: wrap;
+  height: 22ex;
+  padding: 1ex;
+  position: relative;
+  line-height: 3ex
 }
 
 .word {

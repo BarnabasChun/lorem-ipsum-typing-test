@@ -7,20 +7,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<main>
-		<div class="game-area">
+	<main class="game">
+		<div class="wrapper">
+		<div class="game__area">
 			<div class="words-container"></div>
 			<div class="overlay">
-				<div class="metrics">
+				<div class="game__metrics">
 					<h2>How'd you do?</h2>
 					<p class="wpm"></p>
 					<p class="accuracy"></p>
 				</div>
 			</div>
 		</div>
-		<input type="text" class="typing-input">
-		<p class="time-left"></p>
-		<button class="button--restart">↻</button>
+		<div class="game__controls">
+			<input type="text" class="typing-input">
+			<p class="time-left"></p>
+			<button class="button--restart">↻</button>
+		</div>
 	</main>
 	<script src="/public/scripts/app.js"></script>
 </body>
