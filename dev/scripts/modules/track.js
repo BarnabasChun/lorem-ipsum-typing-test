@@ -21,11 +21,13 @@ export default function track() {
     // if the value being typed matches the current portion of the word and is not blank
     
     // how far the current word is from the top of the words container
+    /* will be updated each time on keydown and compared against the last position 
+    which was stored when the user submitted the last word*/
     let currentPosition = currentWord.offsetTop;
     /* if the current position is greater than the last that means the current word is 
     on a new line*/
     if (currentPosition > lastPosition) {
-      // move the previous typed row
+      // move the previous typed row up
       wordsContainer.style.bottom = `${currentPosition}px`;
     }
 
@@ -41,6 +43,7 @@ export default function track() {
       currentWord.classList.add('incorrect');
       currentWord.classList.remove('correct');
     }
+
     // if the user has pressed the spacebar
     if (e.target.value.includes(' ')) {
       // compare if the entered word matches the current word
@@ -61,6 +64,7 @@ export default function track() {
       e.target.value = '';
       // set the last position to be the most recent at the end of each input
       lastPosition = currentPosition;
-    }
+  }
+
   });
 }
