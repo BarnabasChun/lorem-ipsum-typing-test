@@ -6,5 +6,5 @@ export default (app.state = {
   correct: 0,
   messups: [],
   timerRunning: false,
-  seconds: 1,
+  seconds: 15,
 });
