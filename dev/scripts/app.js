@@ -4,21 +4,13 @@ import {
   calcWPM,
   changeClass,
   ready,
+  getInitialState,
 } from './helpers';
 import { outputWords, displayTimeLeft } from './display';
 
-const initialState = {
-  words: [],
-  currentIndex: 0,
-  correct: 0,
-  messups: [],
-  timerRunning: false,
-  seconds: 60,
-};
-
 // copy not a reference
 // will be re-assigned when new game occurs
-let state = Object.assign({}, initialState);
+let state = getInitialState();
 
 function highlight() {
   const currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
@@ -178,7 +170,7 @@ function restart() {
   const timerDisplay = document.querySelector('.time-left');
   restartBtn.addEventListener('click', () => {
     document.querySelector('.overlay').classList.remove('show');
-    state = Object.assign({}, initialState);
+    state = getInitialState();
     getWords();
     runTimer(state.seconds);
     document.querySelector('.typing-input').removeAttribute('disabled');

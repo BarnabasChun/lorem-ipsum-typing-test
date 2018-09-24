@@ -20,3 +20,14 @@ export function ready(fn) {
     document.addEventListener('DOMContentLoaded', fn);
   }
 }
+
+export const getInitialState = () => {
+  const initialState = {
+    words: [],
+    currentIndex: 0,
+    correct: 0,
+    timerRunning: false,
+    seconds: 60,
+  };
+  return Object.assign({}, initialState);
+};
