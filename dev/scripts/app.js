@@ -1,4 +1,11 @@
 import axios from 'axios';
+import {
+  calcAccuracy,
+  calcWPM,
+  changeClass,
+  ready,
+} from './helpers';
+import { outputWords, displayTimeLeft } from './display';
 
 const initialState = {
   words: [],
@@ -13,15 +20,9 @@ const initialState = {
 // will be re-assigned when new game occurs
 let state = Object.assign({}, initialState);
 
-const calcAccuracy = (correct, total) => correct / total;
-
-// words per minute adjusting time in seconds to minutes
-const calcWPM = (words, time) => words / (time / 60);
-
-// takes an element and removes a class and adds a new one
-function changeClass(el, oldClass, newClass) {
-  el.classList.remove(oldClass);
-  el.classList.add(newClass);
+function highlight() {
+  const currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
+  currentWord.classList.add('current-word');
 }
 
 function displayMetrics() {
@@ -31,37 +32,6 @@ function displayMetrics() {
   const wpm = calcWPM(state.correct, state.seconds);
   document.querySelector('.wpm').innerText = `WPM: ${wpm}`;
   document.querySelector('.accuracy').innerText = `Accuracy: ${Math.round(accuracy * 100)}%`;
-}
-
-function displayTimeLeft(seconds) {
-  const timerDisplay = document.querySelector('.time-left');
-  const minutes = Math.floor(seconds / 60);
-  const remainderSeconds = seconds % 60;
-  const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
-  timerDisplay.textContent = display;
-}
-
-function highlight() {
-  const currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
-  currentWord.classList.add('current-word');
-}
-
-function outputWords(arr) {
-  const html = arr.map((word, i) => `<span class='word' data-index=${i}>${word}</span>`).join('');
-  const wordsContainer = document.querySelector('.words-container');
-  wordsContainer.innerHTML = html;
-}
-
-function ready(fn) {
-  if (
-    document.attachEvent
-      ? document.readyState === 'complete'
-      : document.readyState !== 'loading'
-  ) {
-    fn();
-  } else {
-    document.addEventListener('DOMContentLoaded', fn);
-  }
 }
 
 function runTimer(seconds) {
@@ -169,7 +139,6 @@ function track() {
     }
   });
 }
-
 
 function getWords(num = 2, length = 'long') {
   axios({
