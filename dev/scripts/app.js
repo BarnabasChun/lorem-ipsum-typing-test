@@ -1,15 +1,6 @@
 import axios from 'axios';
 
-function resetState() {
-  state.words = [];
-  state.currentIndex = 0;
-  state.correct = 0;
-  state.messups = [];
-  state.timerRunning = false;
-  state.seconds = 60;
-}
-
-const state = {
+const initialState = {
   words: [],
   currentIndex: 0,
   correct: 0,
@@ -17,6 +8,10 @@ const state = {
   timerRunning: false,
   seconds: 15,
 };
+
+// copy not a reference
+// will be re-assigned when new game occurs
+let state = Object.assign({}, initialState);
 
 function track() {
   const input = document.querySelector('.typing-input');
@@ -219,7 +214,7 @@ function restart() {
   const timerDisplay = document.querySelector('.time-left');
   restartBtn.addEventListener('click', function () {
     document.querySelector('.overlay').classList.remove('show');
-    resetState();
+    state = Object.assign({}, initialState);
     getWords();
     timer(state.seconds);
     document.querySelector('.typing-input').removeAttribute('disabled');
