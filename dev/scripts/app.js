@@ -23,14 +23,12 @@ function track() {
       timer(state.seconds);
     }
     const wordsContainer = document.querySelector('.words-container');
-    const word = document.querySelector('.word');
 
     // the current word aligns with the current index
     let currentWord = document.querySelector(`[data-index='${state.currentIndex}']`);
     let currentWordValue = state.words[state.currentIndex];
 
     // the part of the word equivalent in length to the value being typed in the input
-    let slicedWord = currentWordValue.slice(0, e.target.value.length);
     // the rest of the current word will be the index from how much was typed to the word's entire length
     let remainderWord = currentWordValue.slice(e.target.value.length, currentWordValue.length);
 
